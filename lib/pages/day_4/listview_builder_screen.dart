@@ -137,6 +137,16 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("ListView Builder"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: () {
+              setState(() {
+                // Trigger a rebuild to refresh the ListView
+              });
+            },
+          ),
+        ],
       ),
       body: ListView.builder(
         itemCount: footballTeams.length,

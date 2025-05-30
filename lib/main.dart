@@ -12,10 +12,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       theme: ThemeData(
-        appBarTheme: const AppBarTheme(
+        appBarTheme: AppBarTheme(
           backgroundColor: Colors.blueAccent,
+          actionsIconTheme: IconThemeData(
+            color: Colors.white, // Color for action icons
+          ),
           titleTextStyle: TextStyle(
             color: Colors.white, 
             fontSize: 20,
@@ -27,6 +30,9 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.black87,
+          actionsIconTheme: IconThemeData(
+            color: Colors.white, // Color for action icons
+          ),
           titleTextStyle: TextStyle(
             color: Colors.white, 
             fontSize: 20,
