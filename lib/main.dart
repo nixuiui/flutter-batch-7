@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_batch_7/pages/day_4/listview_sparated_screen.dart';
+import 'package:flutter_batch_7/pages/day_4/gridview_count_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const ListViewSparatedScreen(),
+      home: const GridviewCountScreen(),
     );
   }
 }
