@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_batch_7/pages/day_4/gridview_count_screen.dart';
+import 'package:flutter_batch_7/pages/day_4/listview_builder_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,10 +12,29 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      themeMode: ThemeMode.light,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.blueAccent,
+          titleTextStyle: TextStyle(
+            color: Colors.white, 
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
-      home: const GridviewCountScreen(),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.black87,
+          titleTextStyle: TextStyle(
+            color: Colors.white, 
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      home: const ListViewBuilderScreen(),
     );
   }
 }
