@@ -98,6 +98,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   value: "Segment 3",
                   label: Text("Segment 3"),
                 ),
+                ButtonSegment(
+                  value: "Segment 4",
+                  label: Text("Segment 4"),
+                ),
               ],
               selected: {"Segment 1"},
             )
