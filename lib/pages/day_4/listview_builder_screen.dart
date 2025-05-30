@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_batch_7/widgets/football_team_item_card.dart';
 
 class ListViewBuilderScreen extends StatefulWidget {
   const ListViewBuilderScreen({super.key});
@@ -152,17 +153,7 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
         itemCount: footballTeams.length,
         itemBuilder: (context, index) {
           final team = footballTeams[index];
-          return Card(
-            child: ListTile(
-              leading: Image.network(
-                team["logo"]!,
-                width: 50,
-                height: 50,
-              ),
-              title: Text(team["name"]!),
-              subtitle: Text(team["stadium"]!),
-            ),
-          );
+          return FootballTeamItemCard(team: team);
         },
       ),
     );
