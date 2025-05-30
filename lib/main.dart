@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_batch_7/pages/my_home_page.dart';
+import 'package:flutter_batch_7/pages/day_4/sample_expanded_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Batch 7'),
+      home: const SampleExpandedScreen(),
     );
   }
 }
