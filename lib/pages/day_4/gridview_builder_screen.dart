@@ -39,98 +39,16 @@ class _GridViewBuilderScreenState extends State<GridViewBuilderScreen> {
       "name": "Tottenham Hotspur",
       "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/b/b4/Tottenham_Hotspur.svg/1200px-Tottenham_Hotspur.svg.png",
       "stadium": "Tottenham Hotspur Stadium"
-    },
-    {
-      "name": "Manchester United",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png",
-      "stadium": "Old Trafford"
-    },
-    {
-      "name": "Chelsea FC",
-      "logo": "https://upload.wikimedia.org/wikipedia/id/thumb/c/cc/Chelsea_FC.svg/380px-Chelsea_FC.svg.png",
-      "stadium": "Stamford Bridge"
-    },
-    {
-      "name": "Liverpool FC",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Liverpool_FC.svg/1200px-Liverpool_FC.svg.png",
-      "stadium": "Anfield",
-    },
-    {
-      "name": "Arsenal FC",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png",
-      "stadium": "Emirates Stadium"
-    },
-    {
-      "name": "Manchester City",
-      "logo": "https://upload.wikimedia.org/wikipedia/id/thumb/e/eb/Manchester_City_FC_badge.svg/400px-Manchester_City_FC_badge.svg.png",
-      "stadium": "Etihad Stadium"
-    },
-    {
-      "name": "Tottenham Hotspur",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/b/b4/Tottenham_Hotspur.svg/1200px-Tottenham_Hotspur.svg.png",
-      "stadium": "Tottenham Hotspur Stadium"
-    },
-    {
-      "name": "Manchester United",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png",
-      "stadium": "Old Trafford"
-    },
-    {
-      "name": "Chelsea FC",
-      "logo": "https://upload.wikimedia.org/wikipedia/id/thumb/c/cc/Chelsea_FC.svg/380px-Chelsea_FC.svg.png",
-      "stadium": "Stamford Bridge"
-    },
-    {
-      "name": "Liverpool FC",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Liverpool_FC.svg/1200px-Liverpool_FC.svg.png",
-      "stadium": "Anfield",
-    },
-    {
-      "name": "Arsenal FC",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png",
-      "stadium": "Emirates Stadium"
-    },
-    {
-      "name": "Manchester City",
-      "logo": "https://upload.wikimedia.org/wikipedia/id/thumb/e/eb/Manchester_City_FC_badge.svg/400px-Manchester_City_FC_badge.svg.png",
-      "stadium": "Etihad Stadium"
-    },
-    {
-      "name": "Tottenham Hotspur",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/b/b4/Tottenham_Hotspur.svg/1200px-Tottenham_Hotspur.svg.png",
-      "stadium": "Tottenham Hotspur Stadium"
-    },
-    {
-      "name": "Manchester United",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png",
-      "stadium": "Old Trafford"
-    },
-    {
-      "name": "Chelsea FC",
-      "logo": "https://upload.wikimedia.org/wikipedia/id/thumb/c/cc/Chelsea_FC.svg/380px-Chelsea_FC.svg.png",
-      "stadium": "Stamford Bridge"
-    },
-    {
-      "name": "Liverpool FC",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Liverpool_FC.svg/1200px-Liverpool_FC.svg.png",
-      "stadium": "Anfield",
-    },
-    {
-      "name": "Arsenal FC",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png",
-      "stadium": "Emirates Stadium"
-    },
-    {
-      "name": "Manchester City",
-      "logo": "https://upload.wikimedia.org/wikipedia/id/thumb/e/eb/Manchester_City_FC_badge.svg/400px-Manchester_City_FC_badge.svg.png",
-      "stadium": "Etihad Stadium"
-    },
-    {
-      "name": "Tottenham Hotspur",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/b/b4/Tottenham_Hotspur.svg/1200px-Tottenham_Hotspur.svg.png",
-      "stadium": "Tottenham Hotspur Stadium"
-    },
+    }
   ];
+
+  var selectedTeams = <String>{};
+
+  @override
+  void didChangeDependencies() {
+    selectedTeams = ModalRoute.of(context)?.settings.arguments as Set<String>? ?? <String>{};
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -149,25 +67,54 @@ class _GridViewBuilderScreenState extends State<GridViewBuilderScreen> {
         itemCount: footballTeams.length,
         itemBuilder: (context, index) {
           final team = footballTeams[index];
-          return Card(
-            color: Colors.blueAccent,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.network(team['logo']!, height: 50, width: 50),
-                Text(
-                  team['name']!,
-                  style: const TextStyle(color: Colors.white, fontSize: 11),
+          final isSelected = selectedTeams.contains(team["name"]);
+          return InkWell(
+            onTap: () {
+              setState(() {
+                if (isSelected) {
+                  selectedTeams.remove(team["name"]);
+                } else {
+                  selectedTeams.add(team["name"]!);
+                }
+              });
+            },
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+                side: BorderSide(
+                  color: selectedTeams.contains(team['name']) ? Colors.yellow : Colors.transparent,
+                  width: 1,
                 ),
-                Text(
-                  team['stadium']!,
-                  style: const TextStyle(color: Colors.white70, fontSize: 8),
-                ),
-              ],
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.network(team['logo']!, height: 50, width: 50),
+                  Text(
+                    team['name']!,
+                    style: const TextStyle(color: Colors.white, fontSize: 11),
+                  ),
+                  Text(
+                    team['stadium']!,
+                    style: const TextStyle(color: Colors.white70, fontSize: 8),
+                  ),
+                ],
+              ),
             ),
           );
         },
-      )
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: FilledButton(
+            onPressed: () {
+              Navigator.pop(context, selectedTeams);
+            },
+            child: const Text("Select Teams"),
+          ),
+        ),
+      ),
     );
   }
 }

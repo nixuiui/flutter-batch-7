@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_batch_7/consts/router_app.dart';
 import 'package:flutter_batch_7/pages/day_4/listview_builder_screen.dart';
 
 class HomePage extends StatefulWidget {
@@ -44,13 +45,28 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           FilledButton(
+            onPressed: () async {
+              final result = await Navigator.pushNamed(
+                context, 
+                RouterApp.footballTeamGrid,
+                arguments: selectedTeam,
+              );
+              if(result != null) {
+                setState(() {
+                  selectedTeam = result as Set<String>;
+                });
+              }
+            }, 
+            child: Text("Football Team (Grid)"),
+          ),
+          FilledButton(
             onPressed: () {
               Navigator.pushReplacement(context, MaterialPageRoute(
                 builder: (context) => const ListViewBuilderScreen(),
               ));
             }, 
             child: Text("Football Team (Replacement)"),
-          )
+          ),
         ],
       ),
     );
