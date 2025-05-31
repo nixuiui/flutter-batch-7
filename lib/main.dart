@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       routes: routes,
-      initialRoute: RouterApp.home,
+      initialRoute: RouterApp.main,
     );
   }
 }
