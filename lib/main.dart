@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_batch_7/pages/day_4/listview_builder_screen.dart';
+import 'package:flutter_batch_7/pages/day_5/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const ListViewBuilderScreen(),
+      home: const HomePage(),
     );
   }
 }
