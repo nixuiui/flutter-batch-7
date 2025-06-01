@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_batch_7/pages/day_5/abount_screen.dart';
 import 'package:flutter_batch_7/pages/day_5/home_page.dart';
-import 'package:flutter_batch_7/pages/day_5/setting_screen.dart';
+import 'package:flutter_batch_7/pages/day_6/pages/counter_page.dart';
+import 'package:flutter_batch_7/pages/day_6/pages/setting_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -20,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
       body: [
         HomePage(),
         SettingScreen(),
-        AbountScreen(),
+        CounterPage(),
       ][index],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,
@@ -39,8 +39,8 @@ class _MainScreenState extends State<MainScreen> {
             label: 'Settings',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.info),
-            label: 'About',
+            icon: Icon(Icons.numbers),
+            label: 'Counter',
           ),
         ],
       ),

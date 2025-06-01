@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_batch_7/consts/router_app.dart';
+import 'package:flutter_batch_7/pages/day_6/blocs/theme_bloc.dart';
+import 'package:flutter_batch_7/pages/day_6/blocs/theme_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,38 +13,45 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      themeMode: ThemeMode.dark,
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.blueAccent,
-          actionsIconTheme: IconThemeData(
-            color: Colors.white, // Color for action icons
-          ),
-          titleTextStyle: TextStyle(
-            color: Colors.white, 
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+    return BlocProvider(
+      create: (context) => ThemeBloc(),
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'Flutter Demo',
+            themeMode: state.themeMode,
+            theme: ThemeData(
+              appBarTheme: AppBarTheme(
+                backgroundColor: Colors.blueAccent,
+                actionsIconTheme: IconThemeData(
+                  color: Colors.white, // Color for action icons
+                ),
+                titleTextStyle: TextStyle(
+                  color: Colors.white, 
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            darkTheme: ThemeData(
+              brightness: Brightness.dark,
+              appBarTheme: const AppBarTheme(
+                backgroundColor: Colors.black87,
+                actionsIconTheme: IconThemeData(
+                  color: Colors.white, // Color for action icons
+                ),
+                titleTextStyle: TextStyle(
+                  color: Colors.white, 
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            routes: routes,
+            initialRoute: RouterApp.main,
+          );
+        }
       ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.black87,
-          actionsIconTheme: IconThemeData(
-            color: Colors.white, // Color for action icons
-          ),
-          titleTextStyle: TextStyle(
-            color: Colors.white, 
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      routes: routes,
-      initialRoute: RouterApp.main,
     );
   }
 }

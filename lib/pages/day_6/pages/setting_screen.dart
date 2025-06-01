@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_batch_7/pages/day_6/blocs/theme_bloc.dart';
+import 'package:flutter_batch_7/pages/day_6/blocs/theme_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -25,7 +28,18 @@ class _SettingScreenState extends State<SettingScreen> {
         ),
         body: TabBarView(
           children: [
-            Center(child: Text('General Settings', style: Theme.of(context).textTheme.headlineMedium)),
+            BlocBuilder<ThemeBloc, ThemeState>(
+              builder: (context, state) {
+                return SwitchListTile(
+                  title: Text("Dark Mode"),
+                  subtitle: Text("Click to switch theme"),
+                  value: state.themeMode == ThemeMode.dark, 
+                  onChanged: (val) {
+                    context.read<ThemeBloc>().toggleTheme();
+                  }
+                );
+              }
+            ),
             Center(child: Text('Notification Settings', style: Theme.of(context).textTheme.headlineMedium)),
             Center(child: Text('Privacy Settings', style: Theme.of(context).textTheme.headlineMedium)),
           ],
