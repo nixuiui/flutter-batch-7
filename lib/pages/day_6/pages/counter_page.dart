@@ -16,53 +16,68 @@ class _CounterPageState extends State<CounterPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Counter Page"),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              // Action for settings button
-            },
-          ),
-        ],
-      ),
-      body: SizedBox(
-        width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          spacing: 16,
-          children: [
-            BlocBuilder<CounterBloc, int>(
-              bloc: counterBloc,
-              builder: (context, state) {
-                return CounterLayoutWidget(
-                  counter: state,
-                  onNumberPressed: counterBloc.increment,
-                );
-              }
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<CounterBloc, int>(
+          bloc: counterBloc,
+          listener: (context, state) {
+            if(state % 5 == 0) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Counter updated: $state')),
+              );
+              print("Counter updated: $state");
+            }
+          }
+        ),
+      ],
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: Text("Counter Page"),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.settings),
+              onPressed: () {
+                // Action for settings button
+              },
             ),
           ],
         ),
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        spacing: 16,
-        children: [
-          FloatingActionButton(
-            onPressed: counterBloc.increment,
-            tooltip: 'Increment',
-            child: const Icon(Icons.add),
+        body: SizedBox(
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: 16,
+            children: [
+              BlocBuilder<CounterBloc, int>(
+                bloc: counterBloc,
+                builder: (context, state) {
+                  return CounterLayoutWidget(
+                    counter: state,
+                    onNumberPressed: counterBloc.increment,
+                  );
+                }
+              ),
+            ],
           ),
-          FloatingActionButton(
-            onPressed: counterBloc.decrement,
-            tooltip: 'Increment',
-            child: const Icon(Icons.remove),
-          ),
-        ],
+        ),
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 16,
+          children: [
+            FloatingActionButton(
+              onPressed: counterBloc.increment,
+              tooltip: 'Increment',
+              child: const Icon(Icons.add),
+            ),
+            FloatingActionButton(
+              onPressed: counterBloc.decrement,
+              tooltip: 'Increment',
+              child: const Icon(Icons.remove),
+            ),
+          ],
+        ),
       ),
     );
   }
