@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_batch_7/consts/router_app.dart';
 import 'package:flutter_batch_7/pages/day_6/blocs/theme_bloc.dart';
 import 'package:flutter_batch_7/pages/day_6/blocs/theme_state.dart';
+import 'package:flutter_batch_7/pages/day_7/data/local_storage/theme_local_storage.dart';
 import 'package:flutter_batch_7/singleton.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setupSignleton();
+  await setupSignleton();
   runApp(const MyApp());
 }
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<ThemeBloc>(
-          create: (context) => ThemeBloc(),
+          create: (context) => ThemeBloc(ThemeLocalStorage(getIt.get()))..init(),
         ),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
@@ -55,7 +56,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
             routes: routes,
-            initialRoute: RouterApp.product,
+            initialRoute: RouterApp.main,
           );
         }
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_batch_7/pages/day_5/home_page.dart';
-import 'package:flutter_batch_7/pages/day_6/pages/counter_page.dart';
 import 'package:flutter_batch_7/pages/day_6/pages/setting_screen.dart';
+import 'package:flutter_batch_7/pages/day_7/pages/product_page.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -20,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
       body: [
         HomePage(),
         SettingScreen(),
-        CounterPage(),
+        ProductPage(),
       ][index],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,
@@ -40,7 +40,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.numbers),
-            label: 'Counter',
+            label: 'Product',
           ),
         ],
       ),
