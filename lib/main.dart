@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_batch_7/consts/router_app.dart';
 import 'package:flutter_batch_7/pages/day_6/blocs/theme_bloc.dart';
 import 'package:flutter_batch_7/pages/day_6/blocs/theme_state.dart';
+import 'package:flutter_batch_7/singleton.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  setupSignleton();
   runApp(const MyApp());
 }
 
@@ -52,7 +55,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
             routes: routes,
-            initialRoute: RouterApp.main,
+            initialRoute: RouterApp.product,
           );
         }
       ),

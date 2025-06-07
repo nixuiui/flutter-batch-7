@@ -1,6 +1,7 @@
 import 'package:flutter_batch_7/pages/day_4/gridview_builder_screen.dart';
 import 'package:flutter_batch_7/pages/day_5/main_screen.dart';
 import 'package:flutter_batch_7/pages/day_6/pages/counter_page.dart';
+import 'package:flutter_batch_7/pages/day_7/pages/product_page.dart';
 
 import '../pages/day_5/home_page.dart';
 
@@ -9,6 +10,7 @@ class RouterApp {
   static const String home = '/home';
   static const String footballTeamGrid = '/football-team-grid';
   static const String counter = '/counter';
+  static const String product = '/product';
 }
 
 final routes = {
@@ -16,4 +18,5 @@ final routes = {
   RouterApp.home: (context) => const HomePage(),
   RouterApp.footballTeamGrid: (context) => const GridViewBuilderScreen(),
   RouterApp.counter: (context) => const CounterPage(),
+  RouterApp.product: (context) => const ProductPage(),
 };
