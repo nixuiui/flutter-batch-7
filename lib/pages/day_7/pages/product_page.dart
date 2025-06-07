@@ -1,3 +1,4 @@
+import 'package:drift_db_viewer/drift_db_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_batch_7/pages/day_7/data/sqlite/app_database.dart';
 import 'package:flutter_batch_7/pages/day_7/data/sqlite/services/product_db.dart';
@@ -41,6 +42,14 @@ class _ProductPageState extends State<ProductPage> {
       appBar: AppBar(
         title: const Text('Product Page'),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.list),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) => DriftDbViewer(getIt.get<AppDatabase>())
+              ));
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () async {
